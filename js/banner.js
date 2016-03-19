@@ -69,10 +69,21 @@ window.addEventListener("load", function () {
     //init music
     var music = document.querySelector(".music");
     var musicAudio = music.querySelector("audio");
+    musicAudio.play();
+
     musicAudio.addEventListener("canplay", function () {
         music.style.display = "block";
         music.className = "music move";
     }, false);
-    musicAudio.play();
+    music.addEventListener("touchend", function () {
+        if (musicAudio.paused) {//->是否为暂停状态,此时是暂停状态
+            musicAudio.play();
+            music.className = "music move";
+        } else {
+            musicAudio.pause();
+            music.className = "music";
+        }
+    }, false);
+
 
 }, false);
